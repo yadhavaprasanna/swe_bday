@@ -358,8 +358,10 @@ if st.session_state.started:
 
         # --- Telegram Note Sender ---
 
-
+        
         def send_to_telegram(note):
+            TELEGRAM_TOKEN = st.secrets["telegram"]["TELEGRAM_TOKEN"]
+            CHAT_ID = st.secrets["telegram"]["CHAT_ID"]
             url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
             data = {'chat_id': CHAT_ID, 'text': f"🎂 New Birthday Note:\n\n{note}"}
             response = requests.post(url, data=data)
@@ -725,3 +727,4 @@ if st.session_state.started:
 #                 st.button("💖 One More Look", key="back_btn", on_click=go_back)
 #         with col3:
 #             st.button("🌸 Next Sweet Moment", key="next_btn", on_click=go_next)
+
